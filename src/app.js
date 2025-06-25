@@ -1,10 +1,17 @@
-console.log("Hello Rigo from the console!");
 
 const weapons = ["rock", "paper", "scissors", "lizard", "spock"]
 
+const rules = {
+    rock:["scisors", "lizard"],
+    paper:["rock", "spock"],
+    scissors:["paper", "lizard"],
+    lizard:["spock","paper"],
+    spock: ["scissors", "rock"]
+};
+
 const getRandomWeapon = () => {
     const index = Math.floor(Math.random() * weapons.length);
-    return weapons[index]
+    return weapons[index];
 }
 
 const checkWeaponGuess = (userGuess) => {
@@ -15,13 +22,8 @@ const checkWeaponGuess = (userGuess) => {
 
     if (userGuess === machineWeapon) {
         console.log("Take it serious! It's a draw...");
-    } else if (
-        (userGuess === "rock" && (machineWeapon === "scissors" || machineWeapon === "lizard")) ||
-        (userGuess === "paper" && (machineWeapon === "rock" || machineWeapon === "spock")) ||
-        (userGuess === "scissors" && (machineWeapon === "paper" || machineWeapon === "lizard")) ||
-        (userGuess === "lizard" && (machineWeapon === "paper" || machineWeapon === "spock")) ||
-        (userGuess === "spock" && (machineWeapon === "scissors" || machineWeapon === "rock"))
-    ) {
+    }else if (rules[userGuess].includes(machineWeapon)) {
+    
         console.log("Hmm... you win. Again!");
     } else {
         console.log("Bazinga! You lose!");
